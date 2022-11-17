@@ -57,7 +57,8 @@ stopwordlist = ['a', 'about', 'above', 'after', 'again', 'ain', 'all', 'am', 'an
              'hers', 'herself', 'him', 'himself', 'his', 'how', 'i', 'if', 'in',
              'into','is', 'it', 'its', 'itself', 'just', 'll', 'm', 'ma',
              'me', 'more', 'most','my', 'myself', 'now', 'o', 'of', 'on', 'once',
-             'only', 'or', 'other', 'our', 'ours','ourselves', 'out', 'own', 're','s', 'same', 'she', "shes", 'should', "shouldve",'so', 'some', 'such',
+             'only', 'or', 'other', 'our', 'ours','ourselves', 'out', 'own', 're',
+             's', 'same', 'she', "shes", 'should', "shouldve",'so', 'some', 'such',
              't', 'than', 'that', "thatll", 'the', 'their', 'theirs', 'them',
              'themselves', 'then', 'there', 'these', 'they', 'this', 'those',
              'through', 'to', 'too','under', 'until', 'up', 've', 'very', 'was',
@@ -169,41 +170,6 @@ def model_Evaluate(model):
     plt.ylabel("Actual values" , fontdict = {'size':14}, labelpad = 10)
     plt.title ("Confusion Matrix", fontdict = {'size':18}, pad = 20)
 
-BNBmodel = BernoulliNB()
-BNBmodel.fit(X_train, y_train)
-model_Evaluate(BNBmodel)
-y_pred1 = BNBmodel.predict(X_test)
-
-from sklearn.metrics import roc_curve, auc
-fpr, tpr, thresholds = roc_curve(y_test, y_pred1)
-roc_auc = auc(fpr, tpr)
-plt.figure()
-plt.plot(fpr, tpr, color='darkorange', lw=1, label='ROC curve (area = %0.2f)' % roc_auc)
-plt.xlim([0.0, 1.0])
-plt.ylim([0.0, 1.05])
-plt.xlabel('False Positive Rate')
-plt.ylabel('True Positive Rate')
-plt.title('ROC CURVE')
-plt.legend(loc="lower right")
-plt.show()
-
-SVCmodel = LinearSVC()
-SVCmodel.fit(X_train, y_train)
-model_Evaluate(SVCmodel)
-y_pred2 = SVCmodel.predict(X_test)
-
-from sklearn.metrics import roc_curve, auc
-fpr, tpr, thresholds = roc_curve(y_test, y_pred2)
-roc_auc = auc(fpr, tpr)
-plt.figure()
-plt.plot(fpr, tpr, color='darkorange', lw=1, label='ROC curve (area = %0.2f)' % roc_auc)
-plt.xlim([0.0, 1.0])
-plt.ylim([0.0, 1.05])
-plt.xlabel('False Positive Rate')
-plt.ylabel('True Positive Rate')
-plt.title('ROC CURVE')
-plt.legend(loc="lower right")
-plt.show()
 
 LRmodel = LogisticRegression(C = 2, max_iter = 1000, n_jobs=-1)
 LRmodel.fit(X_train, y_train)
